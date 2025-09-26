@@ -1,7 +1,7 @@
 name: Build AAR
 
 on:
-  workflow_dispatch: # run manually from Actions tab
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
           java-version: 11
 
       - name: Build AAR
-        run: ./gradlew assembleRelease
+        run: cd smileyrating && gradle assembleRelease
 
       - name: Upload AAR
         uses: actions/upload-artifact@v4
