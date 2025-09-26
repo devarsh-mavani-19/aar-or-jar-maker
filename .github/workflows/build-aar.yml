@@ -1,26 +1,32 @@
-name: Build AAR
+name: Build SmileyRating AAR
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # lets you trigger it manually
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - name: Setup JDK
+    steps:
+      - name: Checkout SmileyRating repo
+        uses: actions/checkout@v4
+        with:
+          repository: sujithkanna/SmileyRating
+          path: SmileyRating
+
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 11
 
       - name: Build AAR
-        run: cd smileyrating && gradle assembleRelease
+        run: |
+          cd SmileyRating
+          gradle assembleRelease
 
       - name: Upload AAR
         uses: actions/upload-artifact@v4
         with:
           name: smileyrating-aar
-          path: smileyrating/build/outputs/aar/*.aar
+          path: SmileyRating/smileyrating/build/outputs/aar/*.aar
