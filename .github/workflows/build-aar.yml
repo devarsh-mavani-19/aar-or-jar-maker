@@ -33,6 +33,11 @@ jobs:
           cd SmileyRating
           sed -i '/uploadArchives/{N;N;N;N;N;d;}' smilerating/build.gradle
 
+      - name: Comment out external android-release-aar.gradle
+        run: |
+          cd SmileyRating
+          sed -i 's|apply from:.*android-release-aar.gradle|// &|g' smilerating/build.gradle
+
       - name: Build AAR
         run: |
           cd SmileyRating
