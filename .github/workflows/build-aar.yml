@@ -28,6 +28,11 @@ jobs:
       - name: Patch build.gradle to remove jcenter()
         run: sed -i 's/jcenter()/mavenCentral()/g' SmileyRating/build.gradle
 
+      - name: Remove uploadArchives block
+        run: |
+          cd SmileyRating
+          sed -i '/uploadArchives/{N;N;N;N;N;d;}' smilerating/build.gradle
+
       - name: Build AAR
         run: |
           cd SmileyRating
