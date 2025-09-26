@@ -1,17 +1,17 @@
 name: Build AAR
 
 on:
-  workflow_dispatch: # so you can trigger manually
+  workflow_dispatch: # run manually from Actions tab
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 11
@@ -20,7 +20,7 @@ jobs:
         run: ./gradlew assembleRelease
 
       - name: Upload AAR
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: aar
+          name: smileyrating-aar
           path: smileyrating/build/outputs/aar/*.aar
