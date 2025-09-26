@@ -1,7 +1,7 @@
 name: Build SmileyRating AAR
 
 on:
-  workflow_dispatch: # lets you trigger it manually
+  workflow_dispatch:
 
 jobs:
   build:
@@ -19,6 +19,9 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+
+      - name: Patch build.gradle to remove jcenter()
+        run: sed -i 's/jcenter()/mavenCentral()/g' SmileyRating/build.gradle
 
       - name: Build AAR
         run: |
